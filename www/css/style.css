@@ -1,0 +1,108 @@
+/* Empty. Add your own CSS if you like */
+html, body
+{
+    font-weight: lighter;
+}
+.nav-title
+{
+    color:#0c63ee;
+    font-size: 20px !important;
+}
+.background-right
+{
+    background: url("../img/bg.jpg") no-repeat right center;
+    background-size: cover;
+}
+.background-left
+{
+    background: url("../img/bg.jpg") no-repeat left center;
+    background-size: cover;
+}
+.homepage
+{
+    background: url("../img/homebg.jpg") no-repeat 86% top;
+    background-size: cover;
+}
+.homeview
+{
+    text-align: center;
+
+}
+.homeimg
+{
+    background: url("../img/logo-title-w.png") no-repeat left center;
+    background-size: cover;
+    width: 180px;
+    height: 180px;
+    margin: 20% auto 0px auto;
+    opacity: 0.8;
+}
+
+.headerbar{
+    background: transparent !important; 
+    border-bottom: solid 1px rgba(255, 255, 255, 0.25) !important;
+}
+.headerbar .headerleftbtn, .headerrightbtn{
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-weight: lighter !important;
+}
+.headerbar .title{
+    color: snow !important;
+    font-weight: lighter;
+}
+.footerstyle{
+    background: transparent;
+
+    border-top: solid 1px rgba(255, 255, 255, 0.25);
+}
+.footerstyle .title
+{
+    font-size: smaller;
+
+    color: silver;
+}
+.noBackground, .noBackground > .item {
+    background: rgba(0, 62, 115, 0.05);
+}
+.noBackground > .item, .noBackground > .item > p, .noBackground > .item > a{
+    color: white;
+    font-weight: lighter;
+    border-color: white;
+    border-radius: 0 !important;
+    text-decoration: initial;
+    text-align: justify;
+}
+.noBackground > .item > h1, h2,h3,h4,h5,h6{
+    color: white;
+    font-weight: lighter;
+}
+.noBackground > .item > h2{
+    font-size: larger;
+
+    padding: 0px 0px 2px 0px;
+}
+.noBackground > .item > .badgestyle{
+    background-color: transparent;
+    border: solid 1px snow;
+    border-radius: 0px;
+    color: snow;
+    font-weight: lighter;
+}
+.noBackground > .item > .notestyle
+{
+    float: left;
+    color: snow;
+}
+.thing{
+    border: solid 1px;
+    text-align: center;
+    padding: 0px;
+}
+.thing h1{
+    margin-bottom: 5px;
+    
+}
+.thing h2{
+    padding-bottom: 10px !important;
+    
+}
