@@ -18,6 +18,23 @@ angular.module('starter', ['ionic'])
             })
 
         })
+        .controller('experienceController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
+                $http.get('data/experience.json').success(function (data)
+                {
+                    $scope.experience = data;
+                    $scope.whichExp = $state.params.eId;
+                    $scope.toggleGroup = function (list) {
+                        if ($scope.isGroupShown(list)) {
+                            $scope.shownGroup = null;
+                        } else {
+                            $scope.shownGroup = list;
+                        }
+                    };
+                    $scope.isGroupShown = function (list) {
+                        return $scope.shownGroup === list;
+                    };
+                });
+            }])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                     .state('menus', {
@@ -42,54 +59,65 @@ angular.module('starter', ['ionic'])
                             }
                         }
                     })
-                   .state('menus.experience', {
-                       url: "/experience",
-                       views: {
-                           'cvContent': {
-                               templateUrl: 'templates/experience.html'
-                           }
-                       }
-                   })
-                   .state('menus.portfolio', {
-                       url: "/portfolio",
-                       views: {
-                           'cvContent': {
-                               templateUrl: 'templates/portfolio.html'
-                           }
-                       }
-                   })
-                   .state('menus.education', {
-                       url: "/education",
-                       views: {
-                           'cvContent': {
-                               templateUrl: 'templates/education.html'
-                           }
-                       }
-                   })
-                   .state('menus.reference', {
-                       url: "/reference",
-                       views: {
-                           'cvContent': {
-                               templateUrl: 'templates/reference.html'
-                           }
-                       }
-                   })
-                   .state('menus.social', {
-                       url: "/social",
-                       views: {
-                           'cvContent': {
-                               templateUrl: 'templates/social.html'
-                           }
-                       }
-                   })
-                   .state('menus.about', {
-                       url: "/about",
-                       views: {
-                           'cvContent': {
-                               templateUrl: 'templates/about.html'
-                           }
-                       }
-                   })
+                    .state('menus.experience', {
+                        url: "/experience",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/experience.html',
+                                controller: 'experienceController'
+                            }
+                        }
+                    })
+                    .state('menus.expDetail', {
+                        url: "/expDetail/:eId",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/expDetail.html',
+                                controller: 'experienceController'
+                            }
+                        }
+                    })
+                    .state('menus.portfolio', {
+                        url: "/portfolio",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/portfolio.html'
+                            }
+                        }
+                    })
+                    .state('menus.education', {
+                        url: "/education",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/education.html'
+                            }
+                        }
+                    })
+                    .state('menus.reference', {
+                        url: "/reference",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/reference.html'
+                            }
+                        }
+                    })
+                    .state('menus.social', {
+                        url: "/social",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/social.html'
+                            }
+                        }
+                    })
+                    .state('menus.about', {
+                        url: "/about",
+                        views: {
+                            'cvContent': {
+                                templateUrl: 'templates/about.html'
+                            }
+                        }
+                    })
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/menus/home');
         });
+
