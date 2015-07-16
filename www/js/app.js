@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var exampleApp = angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -33,6 +33,9 @@ var exampleApp = angular.module('starter', ['ionic'])
                     $scope.isGroupShown = function (list) {
                         return $scope.shownGroup === list;
                     };
+                    $scope.openLink = function (url) {
+                        window.open(url, "_blank", "location=yes");
+                    }
                 });
             }])
 
@@ -122,21 +125,3 @@ var exampleApp = angular.module('starter', ['ionic'])
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/menus/home');
         });
-
-exampleApp.controller('EmailController', function ($scope) {
-    $scope.sendFeedback = function () {
-        if (window.plugins && window.plugins.emailComposer) {
-            window.plugins.emailComposer.showEmailComposerWithCallback(function (result) {
-                console.log("Response -> " + result);
-            },
-                    "Feedback for your App", // Subject
-                    "", // Body
-                    ["clyde1229@gmail.com"], // To
-                    null, // CC
-                    null, // BCC
-                    false, // isHTML
-                    null, // Attachments
-                    null);                   // Attachment Data
-        }
-    }
-});

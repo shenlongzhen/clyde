@@ -30,7 +30,7 @@
                 <ul>
                     <li class="row" ng-repeat="de in exp.demo">
                         <div class="col-10"><i class="icon ion-paper-airplane"></i></div>
-                        <div class="col-90 demolink"> <a href="http://{{de}}" onclick="href=$(this).attr('href'); window.open(href, '_system', 'location=yes'); return false;">{{ de }}</a> </div>
+                        <div class="col-90 demolink"> <a href="#" ng-click="openLink('http://google.co.nz')">{{ de }}</a> </div>
                     </li>
                 </ul>
             </ion-item>
