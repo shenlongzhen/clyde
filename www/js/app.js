@@ -35,6 +35,32 @@ angular.module('starter', ['ionic'])
                     };
                 });
             }])
+        .controller('emailController', ['$scope', function ($scope) {
+
+                $scope.sendEmail = function ()
+                {
+                    // var sub = $('#subject').value;
+                    // var body = $('#body').value;
+                    // console.log("subject -> " + sub);
+                    // console.log("body -> " + body);
+                    if (window.plugins && window.plugins.emailComposer) {
+                        window.plugins.emailComposer.showEmailComposerWithCallback(function () {
+
+                            console.log("Response -> " + result);
+                        },
+                                "test", // Subject
+                                "hello test email", // Body
+                                ["clyde1229@gmail.com"], // To
+                                null, // CC
+                                null, // BCC
+                                false, // isHTML
+                                null, // Attachments
+                                null                                            // Attachment Data
+                                )
+                    }
+                    ;
+                }
+            }])
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                     .state('menus', {
@@ -113,7 +139,8 @@ angular.module('starter', ['ionic'])
                         url: "/about",
                         views: {
                             'cvContent': {
-                                templateUrl: 'templates/about.html'
+                                templateUrl: 'templates/about.html',
+                                controller: 'emailController'
                             }
                         }
                     })

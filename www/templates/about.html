@@ -7,5 +7,17 @@
     </ion-nav-bar>
     <ion-content class="padding-left padding-right has-footer">
         <div class="homeimg"></div>
+        <div class="card noBackground">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label ">Subject</span>
+                <input type="text" id="subject" placeholder="Subject">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label ">feedback</span>
+                <textarea id="body" placeholder="feedback"></textarea>
+            </label>
+            <button class="button button-full button-stable" ng-click="sendEmail()">send email</button>
+        </div>
+
     </ion-content>
 </ion-view>
