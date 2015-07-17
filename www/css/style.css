@@ -114,6 +114,9 @@ html, body
     padding-bottom: 10px !important;
     
 }
+.list-text-align{
+    text-align: left;
+}
 .btn-collapse{
     text-align: center;
     
@@ -124,7 +127,29 @@ html, body
 .demolink > a{
     text-decoration: blink;
     color: snow;
+    line-height: 25px;
 }
+
+.about> p
+{
+    color: lightgray;
+}
+.about > .aboutContent
+{
+    /* background: #E4E2E2; */
+    margin-top: 15%;
+}
+/*.about > .aboutContent >.row
+{
+    color: lightgray;
+}*/
+.about > .aboutContent >.row >.col
+{
+    color: snow;
+    padding: 10px;
+    font-size: initial;
+}
+
 
 .noBackground .item.item-accordion {
   line-height: 20px;

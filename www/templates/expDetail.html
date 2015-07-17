@@ -22,7 +22,7 @@
                 <ul>
                     <li class="row" ng-repeat="ele in exp.list">
                         <div class="col-10"><i class="icon ion-android-checkbox-outline"></i></div>
-                        <div class="col-90 "> {{ ele }} </div>
+                        <div class="col-90 list-text-align"> {{ ele }} </div>
                     </li>
                 </ul>
             </ion-item>
@@ -30,11 +30,12 @@
                 <ul>
                     <li class="row" ng-repeat="de in exp.demo">
                         <div class="col-10"><i class="icon ion-paper-airplane"></i></div>
-                        <div class="col-90 demolink"> <a href="#" ng-click="openLink('http://{{de}}')">{{ de }}</a> </div>
+                        <div class="col-90 demolink"> <a href="#" ng-click="openLinkBlank('http://{{de}}')">{{ de }}</a> </div>
                     </li>
                 </ul>
             </ion-item>
             <div class="item item-divider item-icon-right" style="text-align: center">
+                <a href="#" ng-click="openLinkWindow('http://google.co.nz')">google</a>
                 {{exp.time}}
             </div>
         </div>

@@ -33,13 +33,24 @@ angular.module('starter', ['ionic'])
                     $scope.isGroupShown = function (list) {
                         return $scope.shownGroup === list;
                     };
-                    $scope.openLink = function (url) {
+                    $scope.openLinkBlank = function (url) {
                         var options = {
                             location: 'yes',
                             closebuttoncaption: 'Return',
                             toolbar: 'yes'
                         };
-                        window.open(url, "_blank", options);
+//                        console.log(.hasOwnProperty("org.apache.cordova.inappbrowser") === true);
+                        var ref = window.open(url, '_blank', 'location=yes');
+                        return false;
+                    }
+                    $scope.openLinkWindow = function (url) {
+                        var options = {
+                            location: 'yes',
+                            closebuttoncaption: 'Return',
+                            toolbar: 'yes'
+                        };
+//                        console.log(.hasOwnProperty("org.apache.cordova.inappbrowser") === true);
+                        var ref = window.open(url, '_blank', 'location=yes');
                         return false;
                     }
                 });
