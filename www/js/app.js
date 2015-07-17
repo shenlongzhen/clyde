@@ -15,6 +15,7 @@ angular.module('starter', ['ionic'])
                 if (window.StatusBar) {
                     StatusBar.styleDefault();
                 }
+            
             })
 
         })
@@ -54,6 +55,17 @@ angular.module('starter', ['ionic'])
                         return false;
                     }
                 });
+            }])
+        .controller('aboutController', ['$scope', function ($scope) {
+                $scope.deviceInformation = ionic.Platform.device();
+                $scope.isWebView = ionic.Platform.isWebView();
+                $scope.isIPad = ionic.Platform.isIPad();
+                $scope.isIOS = ionic.Platform.isIOS();
+                $scope.isAndroid = ionic.Platform.isAndroid();
+                $scope.isWindowsPhone = ionic.Platform.isWindowsPhone();
+
+                $scope.currentPlatform = ionic.Platform.platform();
+                $scope.currentPlatformVersion = ionic.Platform.version();
             }])
 
         .config(function ($stateProvider, $urlRouterProvider) {
@@ -134,7 +146,8 @@ angular.module('starter', ['ionic'])
                         url: "/about",
                         views: {
                             'cvContent': {
-                                templateUrl: 'templates/about.html'
+                                templateUrl: 'templates/about.html',
+                                controller: 'aboutController'
                             }
                         }
                     })
