@@ -73,13 +73,14 @@ html, body
     border-radius: 0 !important;
     text-decoration: initial;
     text-align: justify;
+    word-wrap: normal;
 }
 .noBackground > .item > h1, h2,h3,h4,h5,h6{
     color: white;
     font-weight: lighter;
 }
 .noBackground > .item > h2{
-    font-size: larger;
+    font-size: medium;
 
     padding: 0px 0px 2px 0px;
 }

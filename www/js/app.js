@@ -34,7 +34,13 @@ angular.module('starter', ['ionic'])
                         return $scope.shownGroup === list;
                     };
                     $scope.openLink = function (url) {
-                        window.open(url, "_blank", "location=yes");
+                        var options = {
+                            location: 'yes',
+                            closebuttoncaption: 'Return',
+                            toolbar: 'yes'
+                        };
+                        window.open(url, "_blank", options);
+                        return false;
                     }
                 });
             }])
@@ -117,8 +123,7 @@ angular.module('starter', ['ionic'])
                         url: "/about",
                         views: {
                             'cvContent': {
-                                templateUrl: 'templates/about.html',
-                                controller: 'EmailController'
+                                templateUrl: 'templates/about.html'
                             }
                         }
                     })
