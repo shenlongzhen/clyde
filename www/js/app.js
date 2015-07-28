@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'ngCordova'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -15,59 +15,85 @@ angular.module('starter', ['ionic'])
                 if (window.StatusBar) {
                     StatusBar.styleDefault();
                 }
-            
             })
 
         })
-        .controller('experienceController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
-                $http.get('data/experience.json').success(function (data)
-                {
-                    $scope.experience = data;
-                    $scope.whichExp = $state.params.eId;
-                    $scope.toggleGroup = function (list) {
-                        if ($scope.isGroupShown(list)) {
-                            $scope.shownGroup = null;
-                        } else {
-                            $scope.shownGroup = list;
-                        }
-                    };
-                    $scope.isGroupShown = function (list) {
-                        return $scope.shownGroup === list;
-                    };
-                    $scope.openLinkBlank = function (url) {
-                        var options = {
-                            location: 'yes',
-                            closebuttoncaption: 'Return',
-                            toolbar: 'yes'
-                        };
-//                        console.log(.hasOwnProperty("org.apache.cordova.inappbrowser") === true);
-                        var ref = window.open(url, '_blank', 'location=yes');
-                        return false;
-                    }
-                    $scope.openLinkWindow = function (url) {
-                        var options = {
-                            location: 'yes',
-                            closebuttoncaption: 'Return',
-                            toolbar: 'yes'
-                        };
-//                        console.log(.hasOwnProperty("org.apache.cordova.inappbrowser") === true);
-                        var ref = window.open(url, '_blank', 'location=yes');
-                        return false;
-                    }
+        .controller('experienceController', function ($scope, $http, $state, $cordovaInAppBrowser) {
+//            $http.get('data/experience.json').success(function (data)
+            $http.get('http://shenlongzhen.com/dataJSON/experience.json').success(function (data)
+            {
+                $scope.experience = data;
+                $scope.whichExp = $state.params.eId;
+            });
+            $scope.toggleGroup = function (list) {
+                if ($scope.isGroupShown(list)) {
+                    $scope.shownGroup = null;
+                } else {
+                    $scope.shownGroup = list;
+                }
+            };
+            $scope.isGroupShown = function (list) {
+                return $scope.shownGroup === list;
+            };
+            $scope.openLinkSys = function (url) {
+                var options = {
+                    location: 'yes',
+                    closebuttoncaption: 'Return',
+                    toolbar: 'yes'
+                };
+                $cordovaInAppBrowser.open(url, '_system', options)
+                return false;
+            }
+
+        })
+        .controller('aboutController', function ($scope, $cordovaAppVersion) {
+            $scope.deviceInformation = ionic.Platform.device();
+            $scope.isWebView = ionic.Platform.isWebView();
+            $scope.isIPad = ionic.Platform.isIPad();
+            $scope.isIOS = ionic.Platform.isIOS();
+            $scope.isAndroid = ionic.Platform.isAndroid();
+            $scope.isWindowsPhone = ionic.Platform.isWindowsPhone();
+            $scope.currentPlatform = ionic.Platform.platform();
+            $scope.currentPlatformVersion = ionic.Platform.version();
+
+            document.addEventListener("deviceready", function () {
+                $cordovaAppVersion.getAppVersion().then(function (version) {
+                    $scope.appVersion = version;
                 });
-            }])
-        .controller('aboutController', ['$scope', function ($scope) {
-                $scope.deviceInformation = ionic.Platform.device();
-                $scope.isWebView = ionic.Platform.isWebView();
-                $scope.isIPad = ionic.Platform.isIPad();
-                $scope.isIOS = ionic.Platform.isIOS();
-                $scope.isAndroid = ionic.Platform.isAndroid();
-                $scope.isWindowsPhone = ionic.Platform.isWindowsPhone();
+            }, false);
+        })
 
-                $scope.currentPlatform = ionic.Platform.platform();
-                $scope.currentPlatformVersion = ionic.Platform.version();
-            }])
+        .controller('summaryController', function ($scope, $cordovaInAppBrowser) {
 
+            $scope.openLinkSys = function (url) {
+                var options = {
+                    location: 'yes',
+                    closebuttoncaption: 'Return',
+                    toolbar: 'yes'
+                };
+                $cordovaInAppBrowser.open(url, '_system', options)
+                return false;
+            }
+
+        })
+        .controller('portfolioController', function ($scope, $http, $state, $cordovaInAppBrowser) {
+            $http.get('data/portfolio.json').success(function (data) {
+                $scope.portfolio = data;
+            })
+//                $scope.slideChanged = function (index) {
+//                    console.log('Slide changed', index);
+//                };
+//                $scope.openLinkSys = function (url) {
+//                    var options = {
+//                        location: 'yes',
+//                        closebuttoncaption: 'Return',
+//                        toolbar: 'yes'
+//                    };
+//                    $cordovaInAppBrowser.open(url, '_system', options)
+//                    return false;
+//                }
+
+        })
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                     .state('menus', {
@@ -88,7 +114,8 @@ angular.module('starter', ['ionic'])
                         url: "/summary",
                         views: {
                             'cvContent': {
-                                templateUrl: 'templates/summary.html'
+                                templateUrl: 'templates/summary.html',
+                                controller: 'summaryController'
                             }
                         }
                     })
@@ -114,7 +141,8 @@ angular.module('starter', ['ionic'])
                         url: "/portfolio",
                         views: {
                             'cvContent': {
-                                templateUrl: 'templates/portfolio.html'
+                                templateUrl: 'templates/portfolio.html',
+                                controller: 'portfolioController'
                             }
                         }
                     })

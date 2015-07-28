@@ -1,11 +1,37 @@
 <ion-view view-title="Portfolio">
-   <ion-nav-bar class="bar-stable headerbar">
+    <ion-nav-bar class="bar-stable headerbar">
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon headerleftbtn" menu-toggle="left"></button>
         </ion-nav-buttons>
         <ion-nav-title class="headertitle"></ion-nav-title>
     </ion-nav-bar>
-    <ion-content class="padding has-footer">
-        <h1>Portfolio</h1>
+    <ion-content class="has-footer">
+        <div class="card noBackground" ng-repeat="pofo in portfolio">
+            <div class="item item-icon-left item-divider">
+                <h2><i class="icon ion-ios-world-outline"></i>{{pofo.name}}</h2>
+                <!--<p>Bachelor of Computing and Mathematical Science</p>-->
+            </div>
+            <div class="item item-text-wrap">
+                <p>Relevant Papers:</p>
+                <p>&nbsp;<i class="icon ion-android-done"></i> Distributed and Mobile Systems</p>
+                <p>&nbsp;<i class="icon ion-android-done"></i> Data Structures and Algorithms</p>
+                <p>&nbsp;<i class="icon ion-android-done"></i> Programming Languages</p>
+                <p>&nbsp;<i class="icon ion-android-done"></i> Program Design and Construction</p>
+                <p>&nbsp;<i class="icon ion-android-done"></i> Logical Database Design</p>
+                <p>&nbsp;<i class="icon ion-android-done"></i> Programming for Engineering Applications</p>
+            </div >
+            <div class="item item-text-wrap">
+                <ion-slide-box  does-continue="true" auto-play="ture" slide-interval="3000">
+                    <ion-slide ng-repeat="img in pofo.images">
+                        <div class="box blue" >
+                            <div style="background: url({{img}}) no-repeat center; background-size: contain; width: 100%; height: 300px;"></div>
+                        </div>
+                    </ion-slide>
+                </ion-slide-box>
+            </div>
+            <div class="item item-divider" style="text-align: center;font-size: small;">
+                28th March 2011 to 18th December 2013
+            </div>
+        </div>
     </ion-content>
 </ion-view>

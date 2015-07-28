@@ -21,7 +21,8 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
     "de.appplant.cordova.plugin.email-composer",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "C:\\Users\\LONGZHEN\\Downloads\\cordova-plugin-app-version-develop"
   ],
   "cordovaPlatforms": []
 }
