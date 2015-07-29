@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova'])
+angular.module('starter', ['ionic', 'ngCordova', 'chart.js'])
 
         .run(function ($ionicPlatform) {
             $ionicPlatform.ready(function () {
@@ -20,11 +20,21 @@ angular.module('starter', ['ionic', 'ngCordova'])
         })
         .controller('experienceController', function ($scope, $http, $state, $cordovaInAppBrowser) {
 //            $http.get('data/experience.json').success(function (data)
-            $http.get('http://shenlongzhen.com/dataJSON/experience.json').success(function (data)
+            if (ionic.Platform.isAndroid())
             {
-                $scope.experience = data;
-                $scope.whichExp = $state.params.eId;
-            });
+                $http.get('http://shenlongzhen.com/dataJSON/experience.json').success(function (data)
+                {
+                    $scope.experience = data;
+                    $scope.whichExp = $state.params.eId;
+                });
+            } else {
+                $http.get('data/experience.json').success(function (data)
+                {
+                    $scope.experience = data;
+                    $scope.whichExp = $state.params.eId;
+                });
+            }
+
             $scope.toggleGroup = function (list) {
                 if ($scope.isGroupShown(list)) {
                     $scope.shownGroup = null;
@@ -76,10 +86,65 @@ angular.module('starter', ['ionic', 'ngCordova'])
             }
 
         })
-        .controller('portfolioController', function ($scope, $http, $state, $cordovaInAppBrowser) {
-            $http.get('data/portfolio.json').success(function (data) {
-                $scope.portfolio = data;
-            })
+        .controller('portfolioController', function ($scope, $http, $state, $ionicModal, $ionicSlideBoxDelegate, $cordovaInAppBrowser) {
+            if (ionic.Platform.isAndroid()) {
+                $http.get('http://shenlongzhen.com/dataJSON/portfolio.json').success(function (data) {
+                    $scope.portfolio = data;
+                })
+            } else {
+                $http.get('data/portfolio.json').success(function (data) {
+                    $scope.portfolio = data;
+                })
+            }
+
+            $ionicModal.fromTemplateUrl('templates/portfolioModal.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.openModal = function (data,index) {
+                $scope.images=data;
+                $ionicSlideBoxDelegate.slide(index);
+                $scope.modal.show();
+            };
+
+            $scope.closeModal = function () {
+                $scope.modal.hide();
+            };
+
+            // Cleanup the modal when we're done with it!
+            $scope.$on('$destroy', function () {
+                $scope.modal.remove();
+            });
+            // Execute action on hide modal
+            $scope.$on('modal.hide', function () {
+                // Execute action
+            });
+            // Execute action on remove modal
+            $scope.$on('modal.removed', function () {
+                // Execute action
+            });
+            $scope.$on('modal.shown', function () {
+                console.log('Modal is shown!');
+            });
+
+            // Call this functions if you need to manually control the slides
+            $scope.next = function () {
+                $ionicSlideBoxDelegate.next();
+            };
+
+            $scope.previous = function () {
+                $ionicSlideBoxDelegate.previous();
+            };
+
+            // Called each time the slide changes
+            $scope.slideChanged = function (index) {
+                $scope.slideIndex = index;
+            };
+
+
 //                $scope.slideChanged = function (index) {
 //                    console.log('Slide changed', index);
 //                };
