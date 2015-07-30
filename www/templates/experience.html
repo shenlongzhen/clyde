@@ -8,71 +8,20 @@
     <ion-content class="padding-left padding-right has-footer">
         <div class="card noBackground" ng-repeat="exp in experience">
             <div class="item item-icon-left item-divider" >
-                <h2><i class="icon ion-code-working"></i>{{exp.title}}</h2>
+                <h2><i class="icon {{exp.icon}}"></i>{{exp.title}}</h2>
                 <p>{{exp.employer}}</p>
             </div>
             <a class="noBackground" href="#/menus/expDetail/{{exp.shortname}}">
                 <div class="item item-icon-right item-text-wrap" >
-                <p>
-                    {{exp.description | limitTo: 200}}{{exp.description.length > 200 ? '&hellip;': ''}}
-                </p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
+                    <p>
+                        {{exp.description| limitTo: 200}}{{exp.description.length > 200 ? '&hellip;': ''}}
+                    </p>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
             </a>
             <div class="item item-divider item-icon-right" style="text-align: center; font-size: small;">
                 {{exp.time}}
             </div>
         </div>
-<!--        <div class="card noBackground">
-            <div class="item item-icon-left item-divider">
-                <h2><i class="icon ion-code-working"></i>Web Developer</h2>
-                <p>Ann’s Volcanic Motel</p>
-            </div>
-            <div class="item item-icon-right item-text-wrap">
-                <p>
-                    Responsible for maintaining features and capabilities of the website. Content and images update 
-                    with FTP connection.  Performing Functional Testing and modification for existing code.
-                </p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-divider item-icon-right" style="text-align: center">
-                April 2014 – May 2014
-            </div>
-        </div>
-        <div class="card noBackground">
-            <div class="item item-icon-left item-divider">
-                <h2><i class="icon ion-android-checkmark-circle"></i>Assignment Marker</h2>
-                <p>Auckland University of Technology</p>
-            </div>
-            <div class="item item-icon-right item-text-wrap">
-                <p>
-                    Responsible for collection and marking assignments for Algorithm Design and Analysis. Checking 
-                    performance and cheating of assignments, and report to lecturer.
-                </p>
-                <i class="icon ion-ios-arrow-right"></i>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-divider item-icon-right" style="text-align: center">
-                July 2013 – December 2013
-            </div>
-        </div>
-        
-        <div class="card noBackground">
-            <div class="item item-icon-left item-divider">
-                <h2><i class="icon ion-android-checkmark-circle"></i>Student Volunteer</h2>
-                <p>AUT Chinese Student Association</p>
-            </div>
-            <div class="item item-icon-right item-text-wrap">
-                <p>
-                    Responsible for computer maintenance and IT service for members of AUT Chinese Student Association, 
-                    and events helper including publishing news online and student guide.
-                </p>
-                <i class="icon ion-ios-arrow-right"></i>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-divider item-icon-right" style="text-align: center">
-                March 2011 – December 2011
-            </div>
-        </div>-->
     </ion-content>
 </ion-view>
