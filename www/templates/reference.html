@@ -6,32 +6,31 @@
         <ion-nav-title class="headertitle"></ion-nav-title>
     </ion-nav-bar>
     <ion-content class="padding has-footer">
-        <!--<div class="list noBackground">-->
-        <!--<div class="item">-->
-        <div class="row">
+        
+        <div class="row" ng-repeat="ref in reference">
             <div class="col">
                 <div class="card noBackground">
                     <div class="item item-icon-left item-divider">
-                        <h2><i class="icon ion-man"></i>Dr. Jiamou Liu</h2>
-                        <p>Senior Lecturer</p>
+                        <h2><i class="icon {{ref.icon}}"></i>{{ref.title}} {{ref.fullname}}</h2>
+                        <p ng-repeat="position in ref.job">{{position}}</p>
+<!--                        <p>Senior Lecturer</p>
                         <p>School of Computer and mathematical Sciences</p>
-                        <p>Auckland University of Technology</p>
+                        <p>Auckland University of Technology</p>-->
                     </div>
                     <div class=" item item-icon-right item-divider">
-                        <i class="icon ion-ios-location-outline"></i>55 Wellesley Street East, Auckland Central
+                        <i class="icon ion-ios-location-outline"></i>{{ref.address}}
                     </div>
                     <div class=" item item-icon-right item-divider">
-                        <i class="icon ion-ios-email-outline"></i>jiamou.liu@aut.ac.nz
+                        <i class="icon ion-ios-email-outline"></i>{{ref.email}}
                     </div>
                     <div class=" item item-icon-right item-divider">
-                        <i class="icon ion-ios-telephone-outline"></i>09-9219999 ext. 5868
+                        <i class="icon ion-ios-telephone-outline"></i>{{ref.phone}}
                     </div>
                 </div>
             </div>
         </div>
-        <!--</div>-->
-        <!--<div class="item">-->
-        <div class="row">
+
+<!--        <div class="row">
             <div class="col">
                 <div class="card noBackground">
                     <div class="item item-icon-left item-divider">
@@ -51,8 +50,7 @@
                 </div>
             </div>
         </div>
-        <!--</div>-->
-        <!--                    <div class="item">-->
+
         <div class="row">
             <div class="col">
                 <div class="card noBackground">
@@ -72,8 +70,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--</div>-->
-        <!--</div>-->
+        </div>-->
+        
     </ion-content>
 </ion-view>

@@ -10,19 +10,19 @@
             <div class="col">
                 <div class="list noBackground">
                     <div class="item item-icon-left">
-                        <p><i class="icon ion-ios-person"></i>FULL NAME: Longzhen Shen</p>
+                        <p><i class="icon ion-ios-person"></i>FULL NAME: {{summary.fullname}}</p>
                     </div>
                     <div class="item item-icon-left">
-                        <p><i class="icon ion-ios-person-outline"></i>PREFERRED NAME: Clyde</p>
+                        <p><i class="icon ion-ios-person-outline"></i>PREFERRED NAME: {{summary.engname}}</p>
                     </div>
                     <div class="item item-icon-left">
-                        <p><i class="icon ion-ios-telephone-outline"></i>MOBILE: 021 08111443</p>
+                        <p><i class="icon ion-ios-telephone-outline"></i>MOBILE: {{summary.mobile}}</p>
                     </div>
                     <div class="item item-icon-left">
-                        <p><i class="icon ion-ios-email-outline"></i>EMAIL: clyde1229@gmail.com</p>
+                        <p><i class="icon ion-ios-email-outline"></i>EMAIL: {{summary.email}}</p>
                     </div>
                     <div class="item item-icon-left">
-                        <p><i class="icon ion-ios-location-outline"></i>3/34 Don Croot St., Kingsland, Auckland</p>
+                        <p><i class="icon ion-ios-location-outline"></i>{{summary.address}}</p>
                     </div>
                 </div>
             </div>
@@ -31,50 +31,27 @@
             <div class="col">
                 <div class="card noBackground">
                     <div class="item item-text-wrap">
-                        <p><i class="icon ion-quote"></i> A skilled java, PHP developer with proven expertise in using new tools and technical developments 
-                            to drive improvements throughout an entire software development lifecycle. Having extensive
-                            industry and full life cycle experience in a java based environment or PHP format, along with 
-                            exceptional analytical, design and problem-solving capabilities.</p>
+                        <p><i class="icon ion-quote"></i> {{summary.description}}</p>
                     </div>
                 </div>
                 <div class="list noBackground">
                     <div class="item item-icon-left">
-                        <a href="#" ng-click="openLinkSys('http://shenlongzhen.com');"> <i class="icon ion-ios-world-outline"></i>shenlongzhen.com</a>
+                        <a href="#" ng-click="openLinkSys('http://shenlongzhen.com')"> <i class="icon ion-ios-world-outline"></i>{{summary.web}}</a>
                     </div>
                 </div>
             </div>
         </div>
-<!--        <div class="row">
+        <div class="row">
             <div class="col">
-                <div class="list noBackground">
-                    <div class="item thing">
-                        <h1><i class="icon ion-ios-person"></i></h1>
-                        <h2>READING</h2>
+                <div class="list noBackground border-white">
+                    <div class="item item-icon-left item-no-border" >
+                        <i class="icon ion-stats-bars"></i> Skill Statistics
+                    </div>
+                    <div class="">
+                        <canvas id="radar" class="chart chart-radar" data="value" labels="label" options ="options" style="padding: 10px;"></canvas> 
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="list noBackground">
-                    <div class="item thing">
-                        <h1><i class="icon ion-ios-person"></i></h1>
-                        <h2>READING</h2>
-                    </div>
-                </div>
-            </div><div class="col">
-                <div class="list noBackground">
-                    <div class="item thing">
-                        <h1><i class="icon ion-ios-person"></i></h1>
-                        <h2>READING</h2>
-                    </div>
-                </div>
-            </div><div class="col">
-                <div class="list noBackground">
-                    <div class="item thing">
-                        <h1><i class="icon ion-ios-person"></i></h1>
-                        <h2>READING</h2>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+        </div>
     </ion-content>
 </ion-view>

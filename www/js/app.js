@@ -65,16 +65,55 @@ angular.module('starter', ['ionic', 'ngCordova', 'chart.js'])
             $scope.isWindowsPhone = ionic.Platform.isWindowsPhone();
             $scope.currentPlatform = ionic.Platform.platform();
             $scope.currentPlatformVersion = ionic.Platform.version();
-
             document.addEventListener("deviceready", function () {
                 $cordovaAppVersion.getAppVersion().then(function (version) {
                     $scope.appVersion = version;
                 });
             }, false);
         })
-
-        .controller('summaryController', function ($scope, $cordovaInAppBrowser) {
-
+        .controller('referenceController', function ($scope, $http, $state) {
+            if (ionic.Platform.isAndroid()) {
+                $http.get('http://shenlongzhen.com/dataJSON/reference.json').success(function (data) {
+                    $scope.reference = data;
+                })
+            } else {
+                $http.get('data/reference.json').success(function (data) {
+                    $scope.reference = data;
+                })
+            }
+        })
+        .controller('summaryController', function ($scope, $http, $state, $cordovaInAppBrowser) {
+            if (ionic.Platform.isAndroid()) {
+                $http.get('http://shenlongzhen.com/dataJSON/summary.json').success(function (data) {
+                    $scope.summary = data;
+                    $scope.label = data.labels;
+                    $scope.value = [data.values];
+                })
+            } else {
+                $http.get('data/summary.json').success(function (data) {
+                    $scope.summary = data;
+                    $scope.label = data.labels;
+                    $scope.value = [data.values];
+                })
+            }
+            $scope.options = {
+                //String - Colour of the angle line
+                angleLineColor: "rgba(0,0,0,.1)",
+                //Number - Pixel width of the angle line
+                angleLineWidth: 1,
+                //String - Point label font declaration
+                pointLabelFontFamily: "'Arial'",
+                //String - Point label font weight
+                pointLabelFontStyle: "normal",
+                //Number - Point label font size in pixels
+                pointLabelFontSize: 12,
+                //String - Point label font colour
+                pointLabelFontColor: "snow",
+                //Number - Radius of each point dot in pixels
+                pointDotRadius: 3,
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth: 2,
+            };
             $scope.openLinkSys = function (url) {
                 var options = {
                     location: 'yes',
@@ -104,8 +143,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'chart.js'])
                 $scope.modal = modal;
             });
 
-            $scope.openModal = function (data,index) {
-                $scope.images=data;
+            $scope.openModal = function (data, index) {
+                $scope.images = data;
                 $ionicSlideBoxDelegate.slide(index);
                 $scope.modal.show();
             };
@@ -127,7 +166,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'chart.js'])
                 // Execute action
             });
             $scope.$on('modal.shown', function () {
-                console.log('Modal is shown!');
+                // Execute action
             });
 
             // Call this functions if you need to manually control the slides
@@ -144,20 +183,23 @@ angular.module('starter', ['ionic', 'ngCordova', 'chart.js'])
                 $scope.slideIndex = index;
             };
 
-
-//                $scope.slideChanged = function (index) {
-//                    console.log('Slide changed', index);
-//                };
-//                $scope.openLinkSys = function (url) {
-//                    var options = {
-//                        location: 'yes',
-//                        closebuttoncaption: 'Return',
-//                        toolbar: 'yes'
-//                    };
-//                    $cordovaInAppBrowser.open(url, '_system', options)
-//                    return false;
-//                }
-
+            $scope.openLinkSys = function (url) {
+                var options = {
+                    location: 'yes',
+                    closebuttoncaption: 'Return',
+                    toolbar: 'yes'
+                };
+                $cordovaInAppBrowser.open(url, '_system', options)
+                return false;
+            }
+            $scope.options = {
+                //Number - Point label font size in pixels
+                pointLabelFontSize: 11,
+                //String - Point label font colour
+                pointLabelFontColor: "snow",
+                //Number - Radius of each point dot in pixels
+                pointDotRadius: 2,
+            };
         })
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
@@ -223,15 +265,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'chart.js'])
                         url: "/reference",
                         views: {
                             'cvContent': {
-                                templateUrl: 'templates/reference.html'
-                            }
-                        }
-                    })
-                    .state('menus.social', {
-                        url: "/social",
-                        views: {
-                            'cvContent': {
-                                templateUrl: 'templates/social.html'
+                                templateUrl: 'templates/reference.html',
+                                controller: 'referenceController'
                             }
                         }
                     })

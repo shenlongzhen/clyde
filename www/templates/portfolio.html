@@ -12,16 +12,12 @@
                 <!--<p>Bachelor of Computing and Mathematical Science</p>-->
             </div>
             <div class="item item-text-wrap">
-                <p>Relevant Papers:</p>
-                <p>&nbsp;<i class="icon ion-android-done"></i> Distributed and Mobile Systems</p>
-                <p>&nbsp;<i class="icon ion-android-done"></i> Data Structures and Algorithms</p>
-                <p>&nbsp;<i class="icon ion-android-done"></i> Programming Languages</p>
-                <p>&nbsp;<i class="icon ion-android-done"></i> Program Design and Construction</p>
-                <p>&nbsp;<i class="icon ion-android-done"></i> Logical Database Design</p>
-                <p>&nbsp;<i class="icon ion-android-done"></i> Programming for Engineering Applications</p>
+                    <i class="icon ion-ios-compose-outline"></i>
+                    {{pofo.description}}
+                <div class="demolink"><i class="icon ion-ios-search"></i> Click to view website: <a href="#" ng-click="openLinkSys('http://{{pofo.web}}')">{{ pofo.web }}</a></div>
             </div >
             <div class="item item-text-wrap">
-                <ion-slide-box  does-continue="true" auto-play="ture" slide-interval="3000" show-pager="false">
+                <ion-slide-box  does-continue="true" auto-play="ture" slide-interval="3000">
                     <ion-slide ng-repeat="img in pofo.images">
                         <div class="box blue" >
                             <div style="background: url({{img}}) no-repeat center; background-size: contain; width: 100%; height: 300px;" ng-click="openModal(pofo.images,$index)"></div>
@@ -29,9 +25,9 @@
                     </ion-slide>
                 </ion-slide-box>
             </div>
-            <canvas id="radar" class="chart chart-radar" ng-init="label=pofo.labels; value=[pofo.values]" data="value" labels="label" style="padding: 10px;"></canvas> 
+            <canvas id="radar" class="chart chart-radar" ng-init="label=pofo.labels; value=[pofo.values]" data="value" labels="label" options="options" style="padding: 10px;"></canvas> 
             <div class="item item-divider" style="text-align: center;font-size: small;">
-                28th March 2011 to 18th December 2013
+                
             </div>
         </div>
     </ion-content>
